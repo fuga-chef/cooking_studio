@@ -1,0 +1,368 @@
+@use "../globals" as *;
+@use "../parts/common" as *;
+
+@keyframes scaleX {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+.hero {
+  @extend .pb-lg;
+}
+
+.intro {
+  @extend .content-width;
+  @extend .mb-lg;
+
+  &__inner {
+    @extend .flex;
+    position: relative;
+    justify-content: space-between;
+    background-color: $cBgsalmon;
+    padding: 15px;
+    z-index: 0;
+    @include mq(md) {
+      padding: 50px;
+    }
+    @include mq(xl) {
+      padding: 50px 100px;
+    }
+  }
+
+  &__img {
+    @extend .mb-sm;
+    height: 300px;
+    transition: box-shadow 1s ease 1s;
+
+    &.inview {
+      box-shadow: inset 0 0 30px $cBlack;
+    }
+
+    @include mq(md) {
+      flex-basis: 47%;
+    }
+    @include mq(lg) {
+      height: 400px;
+    }
+    & > img {
+      position: relative;
+      z-index: -1;
+      opacity: 1;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__texts {
+    @extend .pb-sm;
+    @include mq(md) {
+      display: flex;
+      align-items: flex-end;
+      flex-basis: 47%;
+    }
+  }
+
+  &__description {
+    @include mq(lg) {
+      margin-bottom: 40px;
+    }
+  }
+}
+
+#container {
+  transition: transform 0.5s, box-shadow 0.5s;
+  background-color: $cWhite;
+  position: relative;
+  z-index: 10;
+}
+
+#main-content {
+  position: relative;
+  z-index: 0;
+}
+
+main {
+  position: relative;
+  z-index: -1;
+}
+
+.arrange {
+  transform: translateX(-5px);
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $navHeight;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  z-index: 100;
+
+  &.triggered {
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 10px 0 25px -10px rgba(0, 0, 0, 0.5);
+  }
+
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @extend .content-width;
+  }
+
+  &__nav {
+    @extend .flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    display: none;
+    @include mq(lg) {
+      display: block;
+    }
+  }
+
+  &__ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+  }
+
+  &__li {
+    margin: 10px;
+
+    @include mq(md) {
+      margin-left: 30px;
+      margin-right: 0;
+    }
+
+    & > a {
+      color: $cBlack;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+  }
+
+  & .logo {
+    font-size: 35px;
+    justify-content: center;
+
+    @include mq(md) {
+      justify-content: flex-start;
+    }
+  }
+}
+
+.course {
+  @extend .content-width;
+  @extend .mb-lg;
+
+  &__inner {
+    @extend .flex;
+  }
+
+  &__title {
+    @extend .mb-sm;
+    @extend .font-lr;
+  }
+
+  &__item {
+    @include mq(md) {
+      flex-basis: 50%;
+    }
+    @include mq(lg) {
+      margin-bottom: 60px;
+    }
+  }
+
+  &__btn {
+    text-align: center;
+    flex-basis: 100%;
+  }
+
+  &-sub-title {
+    text-align: center;
+    font-size: x-large;
+  }
+}
+
+.feature {
+  &__header {
+    @extend .content-width;
+  }
+
+  &__inner {
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 90%;
+      width: 100%;
+      background-color: $cBgsalmon;
+    }
+  }
+
+  &__container {
+    position: relative;
+    z-index: 2;
+    @extend .flex;
+    @extend .content-width;
+    justify-content: space-between;
+  }
+
+  &__item {
+    background-color: $cWhite;
+    @include mq(md) {
+      flex-basis: 47%;
+    }
+    @include mq(lg) {
+      flex-basis: 25%;
+    }
+    @include mq(xl) {
+      flex-basis: 23%;
+    }
+  }
+
+  &__title {
+    @extend .mb-sm;
+    @extend .font-md;
+    text-align: center;
+    transform: translateY(6px);
+  }
+
+  &__img {
+    height: 150px;
+    margin-bottom: 5px;
+
+    @include mq(lg) {
+      height: 335px;
+    }
+    & > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__btn {
+    text-align: center;
+    flex-basis: 100%;
+    @extend .mb-lg;
+  }
+}
+
+.footer {
+  padding: 60px 0;
+  @extend .content-width;
+
+  &__nav {
+    @extend .flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+  }
+
+  &__ul {
+    @extend .flex;
+    list-style: none;
+    padding: 0;
+  }
+
+  &__li {
+    margin: 10px;
+
+    @include mq(md) {
+      margin-left: 0;
+      margin-right: 30px;
+    }
+
+    & > a {
+      color: $cSubTitle;
+      text-decoration: none;
+    }
+  }
+
+  & > .logo {
+    justify-content: center;
+
+    @include mq(md) {
+      justify-content: flex-start;
+    }
+  }
+}
+
+.logo {
+  font-size: 42px;
+  display: flex;
+
+  &__img {
+    width: 0.7em;
+  }
+}
+
+.side {
+  display: none;
+  position: fixed;
+  top: 70%;
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+  @include mq(xl) {
+    display: block;
+  }
+
+  & .animate-title {
+    color: $cBlack;
+    text-decoration: none;
+    margin: 0 40px;
+    vertical-align: middle;
+    letter-spacing: 2px;
+  }
+
+  &.left {
+    left: -50px;
+
+    &.inview {
+      left: 50px;
+    }
+
+    & .side__inner {
+      transform-origin: top left;
+      transform: rotate(-90deg);
+    }
+  }
+}
+
+.icon {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -20px;
+    width: 1em;
+    height: 1em;
+    transform: translateY(-50%);
+    background-position: center;
+    background-repeat: none;
+    background-size: contain;
+  }
+  &.twitter::before {
+    transform: rotate(90deg);
+    background-image: url(../../image/twitter.svg);
+  }
+  &.instagram::before {
+    transform: rotate(90deg);
+    background-image: url(../../image/insta.svg);
+  }
+}

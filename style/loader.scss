@@ -1,0 +1,73 @@
+@use "globals" as *;
+
+.pace-done #global-container {
+  transition: opacity 1s;
+  opacity: 1;
+}
+
+#global-container {
+  opacity: 0;
+}
+
+.pace {
+  z-index: 2000;
+  position: fixed;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100px;
+  height: 100px;
+}
+
+.pace .pace-progress {
+  transform: none !important;
+  text-align: center;
+}
+
+.pace .pace-progress::after {
+  content: attr(data-progress-text);
+  display: block;
+  font-weight: 100;
+  font-size: 2em;
+  font-family: "Helvetica Neue", "Yu Gothic", "Meiryo", sans-serif;
+  color: $cSubTitle;
+}
+
+.pace.pace-inactive {
+  display: none;
+}
+
+.pace-progress-inner {
+  width: 100px;
+  height: 60px;
+  text-align: center;
+  letter-spacing: -2px;
+  margin: 0 auto;
+
+  & > div {
+    background-color: $cLorder;
+    height: 100%;
+    width: 10px;
+    display: inline-block;
+    @include animation($name: sk-stretchdelay, $duration: 1.2s, $timing-function: ease-in-out, $iteration-count: infinite);
+    @for $i from 1 through 5 {
+      &:nth-child(#{$i}) {
+        animation-delay: -1.3s + $i * 0.1s;
+      }
+    }
+  }
+}
+
+@keyframes sk-stretchdelay {
+  0%,
+  40%,
+  100% {
+    transform: scaleY(0.4);
+  }
+
+  20% {
+    transform: scaleY(1);
+  }
+}
